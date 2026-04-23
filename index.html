@@ -172,6 +172,78 @@
         @media (max-width: 1024px) { .cs-body { grid-template-columns: 1fr; } .cs-content-block { border-right: none; border-bottom: 1px solid var(--border-subtle); } }
         @media (max-width: 900px) { .about-content, .contact-container { grid-template-columns: 1fr; } body { cursor: auto; } .cursor-dot, .cursor-outline { display: none; } }
         @media (max-width: 768px) { .hero-title { font-size: 3.5rem; } .nav-links { display: none; } .cs-header, .cs-content-block, .testimonial-block { padding: 2rem; } }
+    /* --- UNIVERSAL MOBILE OPTIMIZATIONS --- */
+@media (max-width: 768px) {
+    /* 1. Reset Body & Cursor */
+    body { 
+        cursor: default !important; /* Disable custom cursor on touch devices */
+    }
+    .cursor-dot, .cursor-outline { 
+        display: none !important; 
+    }
+
+    /* 2. Adjust Typography */
+    .hero-title { 
+        font-size: 3rem !important; /* Smaller heading for mobile */
+        line-height: 1.2;
+    }
+    .section-title { 
+        font-size: 2.2rem !important; 
+    }
+
+    /* 3. Stack Grids and Layouts */
+    section { 
+        padding: 60px 5% !important; /* Reduce padding on small screens */
+    }
+    .about-content, 
+    .contact-container, 
+    .cs-body { 
+        grid-template-columns: 1fr !important; /* Stack columns into one */
+    }
+
+    /* 4. Navigation Mobile Styling */
+    nav {
+        padding: 1rem 5% !important;
+    }
+    .nav-links {
+        display: none; /* Hide desktop links; ideally replace with a burger menu */
+    }
+
+    /* 5. Case Study Adjustments */
+    .cs-header {
+        padding: 2rem !important;
+    }
+    .cs-content-block, 
+    .testimonial-block {
+        padding: 2.5rem 1.5rem !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+    .metrics-grid {
+        grid-template-columns: 1fr !important; /* One metric per row */
+        gap: 1rem;
+    }
+
+    /* 6. Marquee Speed */
+    .marquee-content {
+        animation-duration: 15s; /* Speed up marquee for narrow screens */
+    }
+
+    /* 7. General Elements */
+    .btn {
+        width: 100%; /* Make buttons full width on mobile */
+        justify-content: center;
+    }
+    .card {
+        padding: 2rem 1.5rem !important;
+    }
+}
+
+/* --- SMALL MOBILE FIXES (Phones < 480px) --- */
+@media (max-width: 480px) {
+    .hero-title { font-size: 2.5rem !important; }
+    .hero-desc { font-size: 1rem !important; }
+}
     </style>
 </head>
 <body>
