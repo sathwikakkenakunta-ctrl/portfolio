@@ -469,7 +469,7 @@
             </div>
 
             <div class="contact-form-wrapper reveal delay-2">
-                <form id="contactForm" class="contact-form">
+                <form action="https://formspree.io/f/maqaaoyw" method="POST" id="contactForm" class="contact-form">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Full Name" required class="hover-target">
                     </div>
@@ -602,24 +602,39 @@
 
         // 7. Form Submission Simulation UI
         const form = document.getElementById('contactForm');
-        const statusMsg = document.getElementById('formStatus');
+const statusMsg = document.getElementById('formStatus');
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            const btn = form.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = 'Sending...';
-            
-            setTimeout(() => {
-                btn.innerText = originalText;
-                statusMsg.style.opacity = '1';
-                form.reset(); 
-                
-                setTimeout(() => {
-                    statusMsg.style.opacity = '0';
-                }, 5000);
-            }, 1000);
+form.addEventListener('submit', async function(e) {
+    e.preventDefault(); // Stop page reload
+    const btn = form.querySelector('button');
+    btn.innerText = 'Transmitting...';
+
+    // Create data object to send
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
         });
+
+        if (response.ok) {
+            btn.innerText = 'Send Transmission';
+            statusMsg.style.opacity = '1';
+            statusMsg.innerText = "Transmission Successful. I will review it shortly.";
+            form.reset();
+            setTimeout(() => { statusMsg.style.opacity = '0'; }, 5000);
+        } else {
+            throw new Error();
+        }
+    } catch (error) {
+        btn.innerText = 'Send Transmission';
+        statusMsg.style.opacity = '1';
+        statusMsg.style.color = "red";
+        statusMsg.innerText = "Error: Transmission failed. Please try again.";
+    }
+});
     </script>
 </body>
 </html>
